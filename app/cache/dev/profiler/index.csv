@@ -61,3 +61,5 @@ da54e4,127.0.0.1,GET,http://localhost:8000/event/css/backendquizz.css,1446206331
 6e816c,127.0.0.1,GET,http://localhost:8000/event/css/backendquizz.css,1446206331,,404
 e5ab1d,127.0.0.1,GET,http://localhost:8000/,1446206373,205be0,200
 205be0,127.0.0.1,GET,http://localhost:8000/,1446206373,,500
+0d243d,127.0.0.1,GET,http://localhost:8000/,1446206729,a06980,200
+a06980,127.0.0.1,GET,http://localhost:8000/,1446206729,,500
