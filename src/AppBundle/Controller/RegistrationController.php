@@ -4,7 +4,7 @@ namespace AppBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
-use UserBundle\Entity\Device;
+use AppBundle\Entity\Device;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\JsonResponse;
 /**
@@ -19,8 +19,9 @@ class RegistrationController extends Controller
      */
     public function createAction(Request $request)
     {
+
       $entity = new Device();
-      
+
       $lastName =  $request->query->get('lastName');
       $firstName = $request->request->get('firstName');
       $email = $request->request->get('email');
