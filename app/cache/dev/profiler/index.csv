@@ -39,3 +39,10 @@ b0c9f5,127.0.0.1,GET,http://localhost:8000/login,1445947233,,200
 930bd4,127.0.0.1,GET,http://localhost:8000/login,1445947377,,200
 2387b4,127.0.0.1,GET,http://localhost:8000/,1446205367,f4e8dd,200
 f4e8dd,127.0.0.1,GET,http://localhost:8000/,1446205367,,500
+f08e9e,127.0.0.1,GET,http://localhost:8000/,1446205603,f651b7,200
+f651b7,127.0.0.1,GET,http://localhost:8000/,1446205603,,500
+b7ca19,127.0.0.1,GET,http://localhost:8000/event,1446205644,,301
+e93ada,127.0.0.1,GET,http://localhost:8000/event,1446205645,,301
+5cdbc6,127.0.0.1,GET,http://localhost:8000/event/,1446205645,,200
+299de5,127.0.0.1,GET,http://localhost:8000/event/css/backendquizz.css,1446205646,aac3af,200
+aac3af,127.0.0.1,GET,http://localhost:8000/event/css/backendquizz.css,1446205646,,404

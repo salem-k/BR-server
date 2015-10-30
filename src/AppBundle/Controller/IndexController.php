@@ -6,13 +6,6 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 
-use AppBundle\Form\QuizzType;
-use AppBundle\Form\QuestionType;
-use AppBundle\Form\ResponseType;
-
-use AppBundle\Entity\Quizz;
-use AppBundle\Entity\Response;
-use AppBundle\Entity\Question;
 
 use Doctrine\Common\Collections\ArrayCollection;
 
