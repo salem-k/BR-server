@@ -243,6 +243,31 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
 
         }
 
+        if (0 === strpos($pathinfo, '/sendEvents')) {
+            // send_events_get
+            if ($pathinfo === '/sendEvents') {
+                if (!in_array($this->context->getMethod(), array('GET', 'HEAD'))) {
+                    $allow = array_merge($allow, array('GET', 'HEAD'));
+                    goto not_send_events_get;
+                }
+
+                return array (  '_controller' => 'AppBundle\\Controller\\DefaultController::indexAction',  '_route' => 'send_events_get',);
+            }
+            not_send_events_get:
+
+            // send_events_post
+            if ($pathinfo === '/sendEventsPost') {
+                if ($this->context->getMethod() != 'POST') {
+                    $allow[] = 'POST';
+                    goto not_send_events_post;
+                }
+
+                return array (  '_controller' => 'AppBundle\\Controller\\DefaultController::eventSentAction',  '_route' => 'send_events_post',);
+            }
+            not_send_events_post:
+
+        }
+
         if (0 === strpos($pathinfo, '/event')) {
             // event
             if (rtrim($pathinfo, '/') === '/event') {
@@ -361,7 +386,7 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
         }
 
         // app_registration_create
-        if ($pathinfo === '/create') {
+        if ($pathinfo === '/register/create') {
             return array (  '_controller' => 'AppBundle\\Controller\\RegistrationController::createAction',  '_route' => 'app_registration_create',);
         }
 

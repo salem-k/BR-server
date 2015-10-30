@@ -22,16 +22,16 @@ class RegistrationController extends Controller
 
       $entity = new Device();
 
-      $lastName =  $request->query->get('lastName');
+      $lastName =  $request->request->get('lastName');
       $firstName = $request->request->get('firstName');
       $email = $request->request->get('email');
       $deviceToken = $request->request->get('deviceToken');
-      if(!empty($deviceToken) && !empty($email) ){
+      if(true ){
         $device = New Device();
-        $device.setLastName($lastName);
-        $device.setFirstName($firstName);
-        $device.setEmail($email);
-        $device.setDeviceToken($deviceToken);
+        $device->setLastName($lastName);
+        $device->setFirstName($firstName);
+        $device->setEmail($email);
+        $device->setDeviceToken($deviceToken);
         $em = $this->getDoctrine()->getManager();
         $em->persist($device);
         $em->flush();

@@ -1,0 +1,28 @@
+{% extends '::base.html.twig' %}
+
+{% block body -%}
+
+<form action="{{path('send_events_post')}}" method="post">
+<table style="width:100%;">
+  <tr>
+    <td style="width:50%">
+      <table>
+        {%for event in events %}
+          <tr>
+            <td>
+              <input type="checkbox" name="event_check_list[]" value="{{event.id}}"/>
+            </td>
+            <td>
+              {{ event.comment }} // {{event.content}}
+            </td>
+          </tr>
+        {% endfor %}
+      </table>
+    </td>
+  </tr>
+</table>
+
+<input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}"   >
+<input type="submit"/>
+</form>
+{% endblock %}
