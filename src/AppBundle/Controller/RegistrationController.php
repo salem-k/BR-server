@@ -15,29 +15,33 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 class RegistrationController extends Controller
 {
     /**
+      * create or update a device (the ID is email field)
      * @Route("/create")
      */
     public function createAction(Request $request)
     {
+        $lastName =  $request->request->get('lastName');
+        $firstName = $request->request->get('firstName');
+        $email = $request->request->get('email');
+        $deviceToken = $request->request->get('deviceToken');
 
-      $entity = new Device();
 
-      $lastName =  $request->request->get('lastName');
-      $firstName = $request->request->get('firstName');
-      $email = $request->request->get('email');
-      $deviceToken = $request->request->get('deviceToken');
-      if(true ){
-        $device = New Device();
-        $device->setLastName($lastName);
-        $device->setFirstName($firstName);
-        $device->setEmail($email);
-        $device->setDeviceToken($deviceToken);
-        $em = $this->getDoctrine()->getManager();
-        $em->persist($device);
-        $em->flush();
-        return new JsonResponse(array('registerResponse' => "ok"));
-      }else {
-        return new JsonResponse(array('registerResponse' => "nok"));
-      }
+        $entity = $em->getRepository('AppBundle:Device')->findBy(array('email' => $email));
+
+        if(!$entity){
+                $device = New Device();
+                $device->setLastName($lastName);
+                $device->setFirstName($firstName);
+                $device->setEmail($email);
+                $device->setDeviceToken($deviceToken);
+                $em = $this->getDoctrine()->getManager();
+                $em->persist($device);
+                $em->flush();
+                return new JsonResponse(array('registerResponse' => "ok-creat"));
+        }else{
+                $editForm = $this->createEditForm($entity);
+                $editForm->handleRequest($request);
+                return new JsonResponse(array('registerResponse' => "ok-update"));
+        }
     }
 }

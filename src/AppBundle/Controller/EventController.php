@@ -54,6 +54,7 @@ class EventController extends Controller
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
             $em->persist($entity);
+
             $em->flush();
 
             return $this->redirect($this->generateUrl('event_show', array('id' => $entity->getId())));
@@ -268,5 +269,4 @@ class EventController extends Controller
         return $response;
 
     }
-
 }
