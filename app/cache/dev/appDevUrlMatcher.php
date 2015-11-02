@@ -243,30 +243,16 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
 
         }
 
-        if (0 === strpos($pathinfo, '/sendEvents')) {
-            // send_events_get
-            if ($pathinfo === '/sendEvents') {
-                if (!in_array($this->context->getMethod(), array('GET', 'HEAD'))) {
-                    $allow = array_merge($allow, array('GET', 'HEAD'));
-                    goto not_send_events_get;
-                }
-
-                return array (  '_controller' => 'AppBundle\\Controller\\DefaultController::indexAction',  '_route' => 'send_events_get',);
+        // send_events_get
+        if ($pathinfo === '/sendEvents') {
+            if (!in_array($this->context->getMethod(), array('GET', 'HEAD'))) {
+                $allow = array_merge($allow, array('GET', 'HEAD'));
+                goto not_send_events_get;
             }
-            not_send_events_get:
 
-            // send_events_post
-            if ($pathinfo === '/sendEventsPost') {
-                if ($this->context->getMethod() != 'POST') {
-                    $allow[] = 'POST';
-                    goto not_send_events_post;
-                }
-
-                return array (  '_controller' => 'AppBundle\\Controller\\DefaultController::eventSentAction',  '_route' => 'send_events_post',);
-            }
-            not_send_events_post:
-
+            return array (  '_controller' => 'AppBundle\\Controller\\DefaultController::indexAction',  '_route' => 'send_events_get',);
         }
+        not_send_events_get:
 
         if (0 === strpos($pathinfo, '/event')) {
             // event
@@ -376,9 +362,29 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
             return array (  '_controller' => 'AppBundle\\Controller\\IndexController::indexAction',  '_route' => 'homepage',);
         }
 
-        // send
-        if ($pathinfo === '/send') {
-            return array (  '_controller' => 'AppBundle\\Controller\\IndexController::sendAction',  '_route' => 'send',);
+        if (0 === strpos($pathinfo, '/sendEvents')) {
+            // send_events_curl_post
+            if ($pathinfo === '/sendEventsCurlPost') {
+                if ($this->context->getMethod() != 'POST') {
+                    $allow[] = 'POST';
+                    goto not_send_events_curl_post;
+                }
+
+                return array (  '_controller' => 'AppBundle\\Controller\\IndexController::sendEventsCurlAction',  '_route' => 'send_events_curl_post',);
+            }
+            not_send_events_curl_post:
+
+            // send_events_post
+            if ($pathinfo === '/sendEventsPost') {
+                if ($this->context->getMethod() != 'POST') {
+                    $allow[] = 'POST';
+                    goto not_send_events_post;
+                }
+
+                return array (  '_controller' => 'AppBundle\\Controller\\IndexController::eventSentAction',  '_route' => 'send_events_post',);
+            }
+            not_send_events_post:
+
         }
 
         // app_registration_create

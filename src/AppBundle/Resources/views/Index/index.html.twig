@@ -6,6 +6,27 @@
 
 <body role="document">
 
+<br /><br /><br /><br /><br /><br /><br />
+<form action="{{path('send_events_curl_post')}}" method="post">
+        {%for event in events %}
+
+          <input type="checkbox" name="event_check_list[]" value="{{event.id}}" id="event{{event.id}}" />
+          <label for="event{{event.id}}">
+            {{ event.comment }} // {{event.content}}
+          </label>
+
+        {% endfor %}
+
+<input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}"   >
+<input type="submit"/>
+</form>
+
+
+
+
+
+
+
    <!-- Fixed navbar -->
    <nav class="navbar navbar-inverse navbar-fixed-top">
      <div class="container">
@@ -61,23 +82,6 @@
        <button type="button" class="btn btn-lg btn-warning">Warning</button>
        <button type="button" class="btn btn-lg btn-danger">Danger</button>
        <button type="button" class="btn btn-lg btn-link">Link</button>
-     </p>
-     <p>
-     {% for Device in Devices %}
-      {{Device.email}}
-     {% endfor %}
-     {% for Event in Events %}
-      <input type="checkbox" name="events[]" value="{{Event.id}}" id="event{{Event.id}}" />
-      <label for="event{{Event.id}}">
-      {{Event.type}} /
-      {{ Event.id }} /
-      {% if Event.startTime %}{{ Event.startTime|date('Y-m-d H:i:s') }}{% endif %} /
-      {% if Event.endTime %}{{ Event.endTime|date('Y-m-d H:i:s') }}{% endif %} /
-      {{ Event.type }} /
-      {{ Event.content }} /
-      {{ Event.comment }}</label>
-      <br />
-     {% endfor %}
      </p>
      <p>
        <button type="button" class="btn btn-default">Default</button>
