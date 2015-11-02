@@ -70,13 +70,17 @@ class IndexController extends Controller
           }
           $devicesTokens = substr($devicesTokens,1);
           foreach ($result as $key => $value) {
-            $events [$key] =json_encode(array_values((array) $value),JSON_FORCE_OBJECT);
+            //$events [$key] =json_encode(array_values((array) $value),JSON_FORCE_OBJECT);
+            $events [$key] = $value;
             //$events [$key] =json_encode($serializer->serialize($value, 'json'),JSON_FORCE_OBJECT);
           }
 
           $cmds = array();
           foreach ($events as $key => $value) {
-            $cmds[$key] = '  curl -u 485d490dd0720a823c518fb6d39d73623ddff1f0487764a4: -H "Content-Type: application/json" -H "X-Ionic-Application-Id: 9cea62b6" https://push.ionic.io/api/v1/push -d \'{"tokens": ["'.$devicesTokens.'"],"production": false, "notification":{  "alert":"'.$events[$key].'", "title": "SAMPLE TITLE","android": {"payload":""}, "ios": {"payload": ""}}}\' ';
+
+
+
+            $cmds[$key] = '  curl -u 485d490dd0720a823c518fb6d39d73623ddff1f0487764a4: -H "Content-Type: application/json" -H "X-Ionic-Application-Id: 9cea62b6" https://push.ionic.io/api/v1/push -d \'{"tokens": ["'.$devicesTokens.'"],"production": false, "notification":{  "alert":"'.$events[$key]->__toString().'", "title": "SAMPLE TITLE","android": {"payload":""}, "ios": {"payload": ""}}}\' ';
             exec($cmds[$key] );
           }
 
