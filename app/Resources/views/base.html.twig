@@ -9,18 +9,16 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <link rel="icon" href="../../favicon.ico">
-
+    <link rel="stylesheet" type="text/css" href="../../css/jquery.datetimepicker.css"/>
     <title>{% block title %}Welcome!{% endblock %}</title>
 
 
 {% block stylesheets %}
     <!-- Bootstrap core CSS -->
-    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../../css/bootstrap.min.css">
     <!-- Optional theme -->
-    <link rel="stylesheet" href="/css/bootstrap-theme.min.css">
-    <link rel="stylesheet" href="/css/bootstrap-datetimepicker.min.css">
-    <link rel="stylesheet" href="/bootflat/css/bootflat.css">
-    <link href="css/backendquizz.css" rel="stylesheet" type="text/css"/>
+    <link rel="stylesheet" href="../../css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="../../bootflat/css/bootflat.css">
     <style>
         h4, h5, h6 {
             margin-top: 7px;
@@ -41,26 +39,44 @@
     <![endif]-->
   </head>
 
-
+<body>
     <div class="container">
+
       {% block body %}{% endblock %}
     </div>
 
 
-    <script src="/js/jquery-2.1.4.min.js"></script>
-    <script src="/js/bootstrap.min.js"></script>
-    <script src="/js/bootstrap-datetimepicker.min.js"></script>
-    <script src="/js/main.js"></script>
+    <script src="../../js/jquery-2.1.4.min.js"></script>
+    <script src="../../js/bootstrap.min.js"></script>
+    <script src="../../js/bootstrap-datetimepicker.min.js"></script>
+    <script src="../../js/jquery.datetimepicker.full.js"></script>
 
-    {% block javascripts %}
+
     <script>
-        $(document).ready(function(){
-          $('.datetimeselect').datetimepicker({
-                format: "dd MM yyyy - hh:ii:ss"
-          });
+        $('#appbundle_event_startTime_date').datetimepicker({
+        	lang:'ch',
+          format: 'Y-m-d',
+        	timepicker:false,
+
         });
+        $('#appbundle_event_startTime_time').datetimepicker({
+        	datepicker:false,
+        	format:'H:i',
+        	step:5
+        });
+        $('#appbundle_event_endTime_date').datetimepicker({
+        	lang:'ch',
+          format: 'Y-m-d',
+        	timepicker:false,
+
+        });
+        $('#appbundle_event_endTime_time').datetimepicker({
+        	datepicker:false,
+        	format:'H:i',
+        	step:5
+        });
+
     </script>
-    {% endblock %}
 
   </body>
 </html>
