@@ -68,9 +68,10 @@ class IndexController extends Controller
           foreach ($Devices as $key => $value) {
             $devicesTokens =$devicesTokens.','. $Devices[$key]->getDeviceToken() ;
           }
-
+          $devicesTokens = substr($devicesTokens,1);
           foreach ($result as $key => $value) {
-            $events [$key] =json_encode($serializer->serialize($value, 'json'));
+            $events [$key] =json_encode(array_values((array) $value),JSON_FORCE_OBJECT);
+            //$events [$key] =json_encode($serializer->serialize($value, 'json'),JSON_FORCE_OBJECT);
           }
 
           $cmds = array();
