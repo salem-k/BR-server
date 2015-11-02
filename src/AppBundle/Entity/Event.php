@@ -188,7 +188,7 @@ class Event
     }
     public function __toString(){
 
-      return $this->getComment . ";" . $this->getStartTime()->format('Y-m-d H:i:s') . ";" . $this->getEndTime()->format('Y-m-d H:i:s') . ";" . $this->getType() . ";" . $this->getContent() . ";" . $this->getComment() ;
+      return $this->getComment() . ";" . $this->getStartTime()->format('Y-m-d H:i:s') . ";" . $this->getEndTime()->format('Y-m-d H:i:s') . ";" . $this->getType() . ";" . $this->getContent() . ";" . $this->getComment() ;
 
     }
 }
