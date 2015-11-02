@@ -31,7 +31,7 @@
     <parameter key="database_port">null</parameter>
     <parameter key="database_name">backendbattelier</parameter>
     <parameter key="database_user">root</parameter>
-    <parameter key="database_password">toor</parameter>
+    <parameter key="database_password">root</parameter>
     <parameter key="mailer_transport">smtp</parameter>
     <parameter key="mailer_host">127.0.0.1</parameter>
     <parameter key="mailer_user">null</parameter>
@@ -2422,7 +2422,7 @@
         <argument key="port">null</argument>
         <argument key="dbname">backendbattelier</argument>
         <argument key="user">root</argument>
-        <argument key="password">toor</argument>
+        <argument key="password">root</argument>
         <argument key="charset">UTF8</argument>
         <argument key="driverOptions" type="collection"/>
       </argument>

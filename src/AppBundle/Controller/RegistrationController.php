@@ -28,7 +28,6 @@ class RegistrationController extends Controller
         $em = $this->getDoctrine()->getManager();
         $entity = $em->getRepository('AppBundle:Device')->findBy(array('email' => $email));
 
-        if(!$entity){
                 $device = New Device();
                 $device->setLastName($lastName);
                 $device->setFirstName($firstName);
@@ -37,11 +36,27 @@ class RegistrationController extends Controller
                 $em = $this->getDoctrine()->getManager();
                 $em->persist($device);
                 $em->flush();
-                return new JsonResponse(array('registerResponse' => "ok-creat"));
+                return new JsonResponse(array('registerResponse' => "ok-create"));
+/*
         }else{
+          echo 'else';
+          die;
+          $device = New Device();
+          $device->setLastName($lastName);
+          $device->setFirstName($firstName);
+          $device->setEmail($email);
+          $device->setDeviceToken($deviceToken);
+          $em = $this->getDoctrine()->getManager();
+          $em->persist($device);
+          $em->flush();
+          return new JsonResponse(array('registerResponse' => "ok-create"));
+          }
+*/
+          /*
                 $editForm = $this->createEditForm($entity);
                 $editForm->handleRequest($request);
                 return new JsonResponse(array('registerResponse' => "ok-update"));
-        }
+          */
+
     }
 }
