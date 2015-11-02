@@ -18,45 +18,33 @@ class RegistrationController extends Controller
       * create or update a device (the ID is email field)
      * @Route("/create")
      */
-    public function createAction(Request $request)
-    {
-        $lastName =  $request->request->get('lastName');
-        $firstName = $request->request->get('firstName');
-        $email = $request->request->get('email');
-        $deviceToken = $request->request->get('deviceToken');
+     public function createAction(Request $request)
+     {
+         $lastName =  $request->request->get('lastName');
+         $firstName = $request->request->get('firstName');
+         $email = $request->request->get('email');
+         $deviceToken = $request->request->get('deviceToken');
 
-        $em = $this->getDoctrine()->getManager();
-        $entity = $em->getRepository('AppBundle:Device')->findBy(array('email' => $email));
+           $em = $this->getDoctrine()->getManager();
+           $entity = $em->getRepository('AppBundle:Device')->findOneBy(array('email' => $email));
 
-                $device = New Device();
-                $device->setLastName($lastName);
-                $device->setFirstName($firstName);
-                $device->setEmail($email);
-                $device->setDeviceToken($deviceToken);
-                $em = $this->getDoctrine()->getManager();
-                $em->persist($device);
-                $em->flush();
-                return new JsonResponse(array('registerResponse' => "ok-create"));
-/*
-        }else{
-          echo 'else';
-          die;
-          $device = New Device();
-          $device->setLastName($lastName);
-          $device->setFirstName($firstName);
-          $device->setEmail($email);
-          $device->setDeviceToken($deviceToken);
-          $em = $this->getDoctrine()->getManager();
-          $em->persist($device);
-          $em->flush();
-          return new JsonResponse(array('registerResponse' => "ok-create"));
-          }
-*/
-          /*
-                $editForm = $this->createEditForm($entity);
-                $editForm->handleRequest($request);
-                return new JsonResponse(array('registerResponse' => "ok-update"));
-          */
+         if(!$entity){
+                 $device = New Device();
+                 $device->setLastName($lastName);
+                 $device->setFirstName($firstName);
+                 $device->setEmail($email);
+                 $device->setDeviceToken($deviceToken);
+                 $em = $this->getDoctrine()->getManager();
+                 $em->persist($device);
+                 $em->flush();
+                 return new JsonResponse(array('registerResponse' =>$device));
+         }else{
 
-    }
+             $entity->setDeviceToken($deviceToken);
+             $em->merge($entity);
+             $em->flush();
+
+             return new JsonResponse(array('registerResponse' => "ok-update"));
+         }
+     }
 }
