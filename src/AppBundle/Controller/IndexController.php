@@ -76,7 +76,7 @@ class IndexController extends Controller
 
           $cmds = array();
           foreach ($events as $key => $value) {
-            $cmds[$key] = '  curl -u 485d490dd0720a823c518fb6d39d73623ddff1f0487764a4: -H "Content-Type: application/json" -H "X-Ionic-Application-Id: 9cea62b6" https://push.ionic.io/api/v1/push -d \'{"tokens": ["'.$devicesTokens.'"],"production": false, "notification":{  "alert":"MESSAGE ALERT", "title": "SAMPLE TITLE","android": {"payload": '.$events[$key].'}, "ios": {"payload": '.$events[$key].'}}}\' ';
+            $cmds[$key] = '  curl -u 485d490dd0720a823c518fb6d39d73623ddff1f0487764a4: -H "Content-Type: application/json" -H "X-Ionic-Application-Id: 9cea62b6" https://push.ionic.io/api/v1/push -d \'{"tokens": ["'.$devicesTokens.'"],"production": false, "notification":{  "alert":"'.$events[$key].'", "title": "SAMPLE TITLE","android": {"payload":""}, "ios": {"payload": ""}}}\' ';
             exec($cmds[$key] );
           }
 
