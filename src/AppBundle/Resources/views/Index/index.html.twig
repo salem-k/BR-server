@@ -7,7 +7,7 @@
 <body role="document">
 
 <br /><br /><br /><br /><br /><br /><br />
-<form action="{{path('send_events_curl_post')}}" method="post">
+<form id="sendNotificationForm" action="{{path('send_events_curl_post')}}" method="post">
         {%for event in events %}
 
           <input type="checkbox" name="event_check_list[]" value="{{event.id}}" id="event{{event.id}}" />
@@ -18,11 +18,32 @@
         {% endfor %}
 
 <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}"   >
-<input type="submit"/>
+<button onclick="sendNotification()" type="button" class="btn btn-lg btn-default" >Send Event</button>
 </form>
 
 
-
+<script>
+function sendNotification(){
+formdata = $('#sendNotificationForm').serialize();
+$.ajax({
+    type: "POST",
+    url: $('#sendNotificationForm').attr('action'),
+    data: formdata ,
+    async: true,
+    dataType: "json",
+    success: function(response)
+    {
+        console.log(response);
+    },
+    error: function(XMLHttpRequest, textStatus, errorThrown)
+    {
+        alert('OK');
+        console.log(XMLHttpRequest);
+        console.log(textStatus);
+    },
+});
+}
+</script>
 
 
 
