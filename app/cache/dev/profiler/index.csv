@@ -78,3 +78,5 @@ d8147e,127.0.0.1,GET,http://localhost/BR-server/web/app_dev.php/css/bootstrap-th
 1467f2,127.0.0.1,GET,http://localhost/BR-server/web/app_dev.php/js/jquery.datetimepicker.full.js,1446463938,,404
 dc2c2b,127.0.0.1,GET,http://localhost/BR-server/web/app_dev.php/event,1446463947,,301
 42e195,127.0.0.1,GET,http://localhost/BR-server/web/app_dev.php/event/,1446463947,,200
+339717,127.0.0.1,GET,http://localhost:8000/register/create,1446466669,b870de,200
+b870de,127.0.0.1,GET,http://localhost:8000/register/create,1446466669,,500

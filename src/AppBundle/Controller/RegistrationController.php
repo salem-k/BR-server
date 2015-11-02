@@ -25,7 +25,7 @@ class RegistrationController extends Controller
         $email = $request->request->get('email');
         $deviceToken = $request->request->get('deviceToken');
 
-
+        $em = $this->getDoctrine()->getManager();
         $entity = $em->getRepository('AppBundle:Device')->findBy(array('email' => $email));
 
         if(!$entity){
