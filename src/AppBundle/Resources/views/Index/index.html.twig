@@ -10,7 +10,7 @@
 <form id="sendNotificationForm" action="{{path('send_events_curl_post')}}" method="post">
         {%for event in events %}
 
-          <input type="checkbox" name="event_check_list[]" value="{{event.id}}" id="event{{event.id}}" />
+          <input type="radio" name="event_check_list[]" value="{{event.id}}" id="event{{event.id}}" />
           <label for="event{{event.id}}">
             {{ event.comment }} // {{event.content}}
           </label><br />
